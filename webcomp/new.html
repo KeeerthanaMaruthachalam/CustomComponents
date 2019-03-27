@@ -1,0 +1,49 @@
+<template id="x-foo-from-template">
+    <style>
+      p { color: green; }
+    </style>
+    <p>I'm in Shadow DOM. My markup was stamped from a &lt;template&gt;.</p>
+  </template>
+  
+  <script>
+    let tmpl = document.querySelector('#x-foo-from-template');
+    // If your code is inside of an HTML Import you'll need to change the above line to:
+    // let tmpl = document.currentScript.ownerDocument.querySelector('#x-foo-from-template');
+  
+    customElements.define('x-foo-from-template', class extends HTMLElement {
+      constructor() {
+        super(); // always call super() first in the constructor.
+        let shadowRoot = this.attachShadow({mode: 'open'});
+        shadowRoot.appendChild(tmpl.content.cloneNode(true));
+      }
+      
+    });
+  </script>
+   <my-custom >
+    <my-shadow>Custom</my-shadow>
+    <my-shadow>Shadow Dom</my-shadow>
+    <my-shadow>Automatic</my-shadow>
+  </my-custom >
+  <style>
+    my-custom {
+      display: flex;
+    }
+    my-shadow {
+      transition: opacity 400ms ease-in-out;
+      opacity: 0.3;
+      flex: 1;
+      text-align: center;
+     border:10px;
+    }
+    my-shadow:hover {
+      opacity: 1.0;
+      background: rgb(255, 0, 255);
+      color: white;
+    }
+    my-custom  > my-shadow {
+      padding: 5px;
+      list-style: none;
+      margin: 0 7px;
+      height:30px;
+    }
+  </style>

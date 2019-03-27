@@ -1,0 +1,44 @@
+<head><style>
+.container{
+    align-content: center;
+    display:flex;
+}</style>
+</head>
+
+
+<my-custom class="container">
+    <b>I'm a devloper my-custom!</b>
+</my-custom>
+
+<my-shadow>
+    
+      <b>I'm in shadow dom!</b>
+      <slot></slot> <!-- slotted content appears here -->
+</my-shadow>
+
+<button is="plastic-button" ><a href="new.html" style=text-decoration:none;color:black;>Click Me!</a></button>
+
+
+<style>
+    my-custom {
+      display: flex;
+    }
+    my-shadow {
+      transition: opacity 400ms ease-in-out;
+      opacity: 0.3;
+      flex: 1;
+      text-align: center;
+      border-radius: 50%;
+    }
+    my-shadow:hover {
+      opacity: 1.0;
+      background: rgb(255, 0, 255);
+      color: white;
+    }
+    my-custom  > my-shadow {
+      padding: 5px;
+      list-style: none;
+      margin: 0 7px;
+    }
+  </style>
+ 
